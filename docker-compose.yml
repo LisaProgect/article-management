@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.frontend
+    restart: always
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./packages/frontend:/app/frontend
+      - /app/frontend/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.backend
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+    volumes:
+      - ./packages/backend:/app/backend
+      - /app/backend/node_modules
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/project?schema=public
+  postgres:
+    container_name: postgres
+    image: postgres:15.3-alpine3.17
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=project
+    ports:
+      - '5436:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

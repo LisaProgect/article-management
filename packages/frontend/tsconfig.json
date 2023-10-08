@@ -1,0 +1,26 @@
+{
+	"extends": ["./tsconfig-checks.json"],
+	"compilerOptions": {
+		"jsx": "react",
+		"module": "ES2022",
+		"declaration": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "ES2022",
+		"sourceMap": true,
+		"outDir": "./dist",
+		"baseUrl": "./",
+		"incremental": true,
+		"useDefineForClassFields": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"composite": true,
+		"types": ["vite/client"]
+	},
+	"exclude": ["./node_modules", "test", "./dist", "**/*spec.ts"],
+	"include": ["./src/**/*", "./vite.config.ts"]
+}
