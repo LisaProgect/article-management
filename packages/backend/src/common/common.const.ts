@@ -7,6 +7,7 @@ export const ERR_MESSAGES = {
   CREDENTIAL_INCORRECT: 'Credentials incorrect',
   SOMETHING_WRONG: 'Something wrong',
   EMAIL_ALREADY_EXIST: 'email already exist',
+  ARTICLE_MANAGE_NOT_ALLOWED: 'article manage not allowed',
 };
 
 export const CONFIRM_MESSAGES = {
