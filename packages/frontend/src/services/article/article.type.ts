@@ -25,3 +25,14 @@ export type GetArticlesParam = {
   search: string;
   sort: string;
 };
+
+export type UpdateArticlesReq = {
+  title: string;
+  description: string;
+  id: string;
+};
+
+export type CreateArticlesReq = {
+  title: string;
+  description: string;
+};

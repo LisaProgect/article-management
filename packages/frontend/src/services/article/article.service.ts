@@ -1,6 +1,11 @@
 import { EnhancedWithAuthHttpService } from "../../shared/services/http-auth.service";
 import { HttpFactoryService } from "../../shared/services/http-factory.service";
-import { GetArticlesParam, GetArticlesRes } from "./article.type";
+import {
+  CreateArticlesReq,
+  GetArticlesParam,
+  GetArticlesRes,
+  UpdateArticlesReq,
+} from "./article.type";
 
 class ArticleService {
   constructor(private readonly httpService: EnhancedWithAuthHttpService) {
@@ -18,6 +23,30 @@ class ArticleService {
       sort: param.sort,
     });
     return this.httpService.get(url);
+  }
+
+  public async updateArticle(
+    param: UpdateArticlesReq
+  ): Promise<GetArticlesRes> {
+    const { id, title, description } = param;
+    return this.httpService.put(`${this.module}/update/${id}`, {
+      title,
+      description,
+    });
+  }
+
+  public async createArticle(
+    param: CreateArticlesReq
+  ): Promise<GetArticlesRes> {
+    const { title, description } = param;
+    return this.httpService.post(`${this.module}/create`, {
+      title,
+      description,
+    });
+  }
+
+  public async deleteArticle(id: string): Promise<GetArticlesRes> {
+    return this.httpService.delete(`${this.module}/delete/${id}`);
   }
 }
 
