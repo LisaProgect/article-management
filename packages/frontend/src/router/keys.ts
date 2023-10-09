@@ -10,4 +10,6 @@ export class RouterKeys {
   public static ARTICLE = "/article";
 
   public static DASHBOARD = "/dashboard";
+
+  public static RSS = "/rss";
 }

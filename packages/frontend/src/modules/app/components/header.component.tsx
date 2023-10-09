@@ -6,7 +6,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useAuth } from "../../../shared/hooks/use-auth.hook";
 import { RouterKeys } from "../../../router/keys";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { linkStyle } from "../app.style";
 
 const Header: React.FunctionComponent = () => {
   const { user, logout } = useAuth();
@@ -14,6 +15,7 @@ const Header: React.FunctionComponent = () => {
 
   const goToLogin = () => navigate(RouterKeys.LOGIN);
   const goToRegister = () => navigate(RouterKeys.REGISTER);
+  const goToDashboard = () => navigate(RouterKeys.DASHBOARD);
   return (
     <Box
       sx={{
@@ -29,7 +31,12 @@ const Header: React.FunctionComponent = () => {
               flexGrow: 1,
             }}
           >
-            Home
+            <Link to={RouterKeys.ROOT} className={linkStyle}>
+              Home
+            </Link>
+            <Link to={RouterKeys.RSS} className={linkStyle}>
+              RSS
+            </Link>
           </Typography>
           {!user ? (
             <>
@@ -41,9 +48,14 @@ const Header: React.FunctionComponent = () => {
               </Button>
             </>
           ) : (
-            <Button color="inherit" onClick={logout}>
-              Logout
-            </Button>
+            <>
+              <Button color="inherit" onClick={goToDashboard}>
+                Dashboard
+              </Button>
+              <Button color="inherit" onClick={logout}>
+                Logout
+              </Button>
+            </>
           )}
         </Toolbar>
       </AppBar>

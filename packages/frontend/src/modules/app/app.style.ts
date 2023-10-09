@@ -82,3 +82,8 @@ export const contentWrapper = css`
 export const title = css`
   font-size: 42px;
 `;
+
+export const linkStyle = css`
+  color: #fff;
+  padding-left: 10px;
+`;

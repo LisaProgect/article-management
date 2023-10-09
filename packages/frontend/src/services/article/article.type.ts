@@ -36,3 +36,23 @@ export type CreateArticlesReq = {
   title: string;
   description: string;
 };
+
+export type ArticleRss = {
+  creator: string;
+  title: string;
+  link: string;
+  pubDate: string;
+  "content:encoded": string;
+  "content:encodedSnippet": string;
+  enclosure: {
+    url: string;
+    type: string;
+    length: string;
+  };
+  "dc:creator": string;
+  content: string;
+  contentSnippet: string;
+  guid: string;
+  categories: string[];
+  isoDate: string;
+};

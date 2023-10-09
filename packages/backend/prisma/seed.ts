@@ -26,8 +26,6 @@ async function main() {
       },
     },
   });
-
-  console.log({ alice });
 }
 main()
   .then(async () => {

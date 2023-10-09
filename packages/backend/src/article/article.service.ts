@@ -3,10 +3,12 @@ import { Article, Prisma, User } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
 import { UserService } from 'src/user/user.service';
 import { GetArticlesDto } from './dto/get-article.dto';
-import { EOrderBy, ESort, IArticle } from './article.types';
+import { EOrderBy, ESort, IArticle, IArticleRss } from './article.types';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { CONFIRM_MESSAGES, ERR_MESSAGES } from 'src/common/common.const';
 import { UpdateArticleDto } from './dto/update-article.dto';
+import { RssArticleDto } from './dto/rss-article.dto';
+import * as Parser from 'rss-parser';
 
 @Injectable()
 export class ArticleService {
@@ -137,5 +139,23 @@ export class ArticleService {
         HttpStatus.BAD_REQUEST,
       );
     }
+  }
+
+  public async getUserArticle(userId: string): Promise<Article[]> {
+    const article = this.prisma.article.findMany({
+      where: {
+        userId,
+      },
+    });
+
+    return article;
+  }
+
+  public async getArticleRss(body: RssArticleDto): Promise<IArticleRss[]> {
+    const articles = [];
+    const parser = new Parser();
+    const feed = await parser.parseURL(body.url);
+    feed.items.forEach((entry) => articles.push(entry));
+    return articles;
   }
 }

@@ -15,3 +15,23 @@ export interface IArticle {
   article: Article[];
   metaData: IMetaData;
 }
+
+export interface IArticleRss {
+  creator: string;
+  title: string;
+  link: string;
+  pubDate: string;
+  'content:encoded': string;
+  'content:encodedSnippet': string;
+  enclosure: {
+    url: string;
+    type: string;
+    length: string;
+  };
+  'dc:creator': string;
+  content: string;
+  contentSnippet: string;
+  guid: string;
+  categories: string[];
+  isoDate: string;
+}

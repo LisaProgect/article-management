@@ -13,7 +13,6 @@ class AuthService {
     email: string;
     password: string;
   }): Promise<User> {
-    console.log(props);
     return this.httpService.post(`${this.module}/signup`, props);
   }
 
@@ -21,7 +20,6 @@ class AuthService {
     email: string;
     password: string;
   }): Promise<User> {
-    console.log(props);
     return this.httpService.post(`${this.module}/signin`, props);
   }
 }

@@ -11,7 +11,6 @@ export default ({ mode }: unknown): unknown => {
     ...process.env,
     ...loadEnv(mode, process.cwd()),
   };
-  console.log("process.env", process.env);
 
   return defineConfig({
     server: {

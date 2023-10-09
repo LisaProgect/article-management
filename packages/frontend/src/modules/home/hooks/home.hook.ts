@@ -28,7 +28,7 @@ export const useHome = (): UseHomeReturn => {
   const debounceValue = useDebounce(search);
 
   const { data, isLoading } = useQuery(
-    [QUERY_KEYS.ATRICLES, page, debounceValue, sort],
+    [QUERY_KEYS.ARTICLES, page, debounceValue, sort],
     async () =>
       articleService.getArticles({ page, search: debounceValue, sort })
   );

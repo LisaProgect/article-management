@@ -11,13 +11,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ArticleService } from './article.service';
-import { IArticle } from './article.types';
+import { IArticle, IArticleRss } from './article.types';
 import { GetArticlesDto } from './dto/get-article.dto';
 import { IRequest } from 'src/auth/auth.types';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { Article } from '@prisma/client';
 import { AuthGuard } from 'src/jwt/guards/auth.guard';
 import { UpdateArticleDto } from './dto/update-article.dto';
+import { RssArticleDto } from './dto/rss-article.dto';
 
 @Controller('article')
 export class ArticleController {
@@ -56,5 +57,20 @@ export class ArticleController {
     @Param('id') id: string,
   ): Promise<Article | null> {
     return this.articleService.updateArticle(req.user, id, articleData);
+  }
+
+  @Get('user')
+  @UseGuards(AuthGuard)
+  public async getUserArticle(
+    @Request() req: IRequest,
+  ): Promise<Article[] | []> {
+    return this.articleService.getUserArticle(req.user.id);
+  }
+
+  @Post('rss')
+  public async getArticleRss(
+    @Body() body: RssArticleDto,
+  ): Promise<IArticleRss[] | []> {
+    return this.articleService.getArticleRss(body);
   }
 }

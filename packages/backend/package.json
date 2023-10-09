@@ -39,6 +39,7 @@
     "passport": "^0.6.0",
     "prisma": "^5.3.1",
     "reflect-metadata": "^0.1.13",
+    "rss-parser": "^3.13.0",
     "rxjs": "^7.8.1",
     "swagger-ui-express": "^5.0.0",
     "uid-safe": "^2.1.5",

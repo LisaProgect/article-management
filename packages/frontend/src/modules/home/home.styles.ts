@@ -13,6 +13,7 @@ export const textWrapper = css`
   flex-direction: column;
   margin-bottom: 10px;
   max-width: 850px;
+  width: 100%;
 `;
 
 export const sortStyle = css`
